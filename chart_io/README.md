@@ -1,6 +1,6 @@
 # Chart.io Dashboard Retriever
 ## Motivation
-As much as [Chart.io](http://chart.io) rocks, there is always room for improvement. At Ginger.io, we wanted to distribute a weekly sales report with one page per account. In Chart.io, I had set up a dashboard with a global filter for selecting an account. The report could have been created manually: select an account, wait for dashboard to refresh, save the PDF, and rinse and repeat for each account. Instead, I decided to automate the process using Python, WebDriver, and PhantomJS.
+As much as [Chart.io](http://chart.io) rocks, there is always room for improvement. At [Ginger.io](http://ginger.io), we wanted to distribute a weekly sales report with one page per account. In Chart.io, I had set up a dashboard with a global filter for selecting an account. The report could have been created manually: select an account, wait for dashboard to refresh, save the PDF, and rinse and repeat for each account. Instead, I decided to automate the process using Python, WebDriver, and PhantomJS.
 
 ## Example
 Once you've added the `chartio.py` file to your project, here's an example of how easy it is to use:
