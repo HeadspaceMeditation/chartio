@@ -24,4 +24,4 @@ sudo apt-get install libicu48 libjpeg-dev fontconfig
 curl -s https://phantomjs.googlecode.com/files/phantomjs-1.9.2-linux-i686.tar.bz2 | sudo tar xfj - --strip-components 2 -C /usr/bin phantomjs-1.9.2-linux-i686/bin/phantomjs
 pip install Pillow==2.3.0 PyPDF2==1.19 selenium==2.31.0
 ````
-Note that the long `curl` command simply places a copy of the `phantomjs` binary into `/usr/bin`.
+Note that the long `curl` command simply places a copy of the `phantomjs` binary into `/usr/bin`. If you end up putting it elsewhere, be sure to update the `PHANTOMJS_PATH` attribute in `chartio.py`.
