@@ -33,9 +33,6 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException, WebDriverException
 
 
-logger = logging.getLogger('ginger.sales')
-
-
 class LoginFailedException(Exception):
     pass
 
@@ -135,8 +132,6 @@ class ChartioDashboardRetriever(object):
             msg = 'No matches found for {}'.format(filter_value)
             if self.debug:
                 print 'Error:', msg
-            else:
-                logger.error(msg)
             return False
         return True
 
