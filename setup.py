@@ -12,8 +12,8 @@ setup(
     description='Chart.io Utilities',
     long_description=open('README.md').read(),
     install_requires=[
-        "Pillow==2.3.0",
-        "PyPDF2==1.19",
-        "selenium==2.31.0",
+        "Pillow>=2.3.0",
+        "PyPDF2>=1.19",
+        "selenium>=2.31.0",
     ],
 )
