@@ -46,7 +46,7 @@ class ChartioDashboardRetriever(object):
     LOGIN_URL = 'https://chartio.com/login'
     PROJECTS_URL = 'https://chartio.com/project/'
     LOGOUT_URL = 'https://chartio.com/logout/'
-    TIMEOUT = 10
+    TIMEOUT = 60
 
     def __init__(self, username, password, debug=False):
         self.username = username
