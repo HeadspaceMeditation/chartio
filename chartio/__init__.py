@@ -21,8 +21,6 @@ from time import sleep
 from PIL import Image
 from StringIO import StringIO
 import base64
-import logging
-import sys
 
 from PyPDF2 import PdfFileMerger, PdfFileReader, PdfFileWriter
 from selenium import webdriver
@@ -166,21 +164,3 @@ class ChartioDashboardRetriever(object):
         im_png.save(buffer_, format='PDF')
         pdf = PdfFileReader(buffer_)
         return pdf
-
-
-if __name__ == '__main__':
-    """
-    For testing with Firefox at command line. Example:
-        python chartio.py jeremy@ginger.io {password} {dashboard_url} "Filter Value 1,Filter Value 2"
-    
-    Uses FireFox and will write PDF to `chartio_test.pdf`
-    
-    Useful for debugging interactively:
-      from IPython.core.debugger import Tracer
-      Tracer()() # to break into ipdb
-    """
-    username, password, dashboard_url, filter_values_str = sys.argv[1:5]
-    filter_values = filter_values_str.split(',')
-    chartio = ChartioDashboardRetriever(username, password, debug=True)
-    chartio.get_pdf_for_dashboard(dashboard_url, filter_values)
-    chartio.close()
