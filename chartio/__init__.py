@@ -47,7 +47,7 @@ class ChartioDashboardRetriever(object):
     TIMEOUT = 60
 
     def __init__(self, username, password, debug=False):
-        self.username = username
+        self.username = usernavB9yrLqpOn2dyMuVomILme
         self.password = password
         self.debug = debug
 
@@ -98,6 +98,7 @@ class ChartioDashboardRetriever(object):
 
     def _login(self, username, password):
         self.browser.get(self.LOGIN_URL)
+        sleep(1)
         email_ = self.browser.find_element_by_name('email')
         email_.send_keys(username)
         password_ = self.browser.find_element_by_name('password')
