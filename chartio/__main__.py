@@ -1,6 +1,6 @@
 """
 For testing with Firefox at command line. Example:
-    python chartio {email} {password} {dashboard_url} "Filter Value 1,Filter Value 2"
+    python -m chartio {email} {password} {dashboard_url} "Filter Value 1,Filter Value 2"
 
 Uses FireFox and will write PDF to `chartio_test.pdf`
 
@@ -10,6 +10,7 @@ Useful for debugging interactively:
 """
 
 import sys
+from chartio import ChartioDashboardRetriever
 username, password, dashboard_url, filter_values_str = sys.argv[1:5]
 filter_values = filter_values_str.split(',')
 chartio = ChartioDashboardRetriever(username, password, debug=True)
