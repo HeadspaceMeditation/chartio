@@ -47,7 +47,7 @@ class ChartioDashboardRetriever(object):
     TIMEOUT = 60
 
     def __init__(self, username, password, debug=False):
-        self.username = usernavB9yrLqpOn2dyMuVomILme
+        self.username = username
         self.password = password
         self.debug = debug
 
@@ -87,18 +87,22 @@ class ChartioDashboardRetriever(object):
             browser = webdriver.Firefox()
             self.enter_key = Keys.RETURN
         else:
+            service_args = ['--ssl-protocol=any']
             # http://stackoverflow.com/a/20895651/444654
             try:
-                browser = webdriver.PhantomJS(self.PHANTOMJS_PATH)
+                browser = webdriver.PhantomJS(
+                    self.PHANTOMJS_PATH,
+                    service_args=service_args)
             except WebDriverException:
-                browser = webdriver.PhantomJS(self.PHANTOMJS_PATH)
+                browser = webdriver.PhantomJS(
+                    self.PHANTOMJS_PATH,
+                    service_args=service_args)
             self.enter_key = Keys.ENTER
             browser.set_window_size(1920, 1000)
         return browser
 
     def _login(self, username, password):
         self.browser.get(self.LOGIN_URL)
-        sleep(1)
         email_ = self.browser.find_element_by_name('email')
         email_.send_keys(username)
         password_ = self.browser.find_element_by_name('password')
@@ -107,7 +111,7 @@ class ChartioDashboardRetriever(object):
         if self.browser.current_url == self.LOGIN_URL:
             # Already signed in. Confirm signing out of other browser.
             assert 'Accounts already logged in' in self.browser.page_source
-            button = self.browser.find_element_by_css_selector('button')
+            button = self.browser.find_element_by_class_name('btn-primary')
             button.click()
         if self.browser.current_url != self.PROJECTS_URL:
             raise LoginFailedException
