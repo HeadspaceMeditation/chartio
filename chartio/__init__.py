@@ -42,7 +42,7 @@ class InvalidFilterException(Exception):
 class ChartioDashboardRetriever(object):
     PHANTOMJS_PATH = '/usr/bin/phantomjs'
     LOGIN_URL = 'https://chartio.com/login'
-    PROJECTS_URL = 'https://chartio.com/project/'
+    HOME_URL = 'https://chartio.com/gingerio/'
     LOGOUT_URL = 'https://chartio.com/logout/'
     TIMEOUT = 60
 
@@ -111,10 +111,10 @@ class ChartioDashboardRetriever(object):
         if self.browser.current_url == self.LOGIN_URL:
             # Already signed in. Confirm signing out of other browser.
             assert 'Accounts already logged in' in self.browser.page_source
-            form = self.browser.find_element_by_class_name('window-form')
-            button = form.find_element_by_tag_name('button')
+            button = self.browser.find_element_by_css_selector(
+                'form.window-form > button')
             button.click()
-        if self.browser.current_url != self.PROJECTS_URL:
+        if self.browser.current_url != self.HOME_URL:
             raise LoginFailedException
 
     def _load_dashboard(self, dashboard_url):
@@ -123,7 +123,8 @@ class ChartioDashboardRetriever(object):
         presentation_mode_button = self.browser.find_element_by_id('presentation-mode-toggle')
         presentation_mode_button.click()
         sleep(1)  # for Phantom
-        self.filter_input = self.browser.find_element_by_css_selector('input')
+        self.filter_input = self.browser.find_element_by_css_selector(
+            'li.search-field > input')
 
     def _filter_dashboard(self, filter_value):
         self.filter_input.send_keys([Keys.BACK_SPACE, Keys.BACK_SPACE])
