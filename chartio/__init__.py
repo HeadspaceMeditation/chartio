@@ -111,7 +111,8 @@ class ChartioDashboardRetriever(object):
         if self.browser.current_url == self.LOGIN_URL:
             # Already signed in. Confirm signing out of other browser.
             assert 'Accounts already logged in' in self.browser.page_source
-            button = self.browser.find_element_by_class_name('btn-primary')
+            form = self.browser.find_element_by_class_name('window-form')
+            button = form.find_element_by_tag_name('button')
             button.click()
         if self.browser.current_url != self.PROJECTS_URL:
             raise LoginFailedException
