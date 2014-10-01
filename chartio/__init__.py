@@ -43,6 +43,7 @@ class ChartioDashboardRetriever(object):
     PHANTOMJS_PATH = '/usr/bin/phantomjs'
     LOGIN_URL = 'https://chartio.com/login'
     LOGOUT_URL = 'https://chartio.com/logout/'
+    PHANTOM_LOG_PATH = '/var/log/phantomjs/phantomjs.log'
     TIMEOUT = 60
 
     def __init__(self, username, password, debug=False):
@@ -91,11 +92,13 @@ class ChartioDashboardRetriever(object):
             try:
                 browser = webdriver.PhantomJS(
                     self.PHANTOMJS_PATH,
-                    service_args=service_args)
+                    service_args=service_args,
+                    service_log_path=self.PHANTOM_LOG_PATH)
             except WebDriverException:
                 browser = webdriver.PhantomJS(
                     self.PHANTOMJS_PATH,
-                    service_args=service_args)
+                    service_args=service_args,
+                    service_log_path=self.PHANTOM_LOG_PATH)
             self.enter_key = Keys.ENTER
             browser.set_window_size(1920, 1000)
         return browser
