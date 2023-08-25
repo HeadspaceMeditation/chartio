@@ -7,7 +7,7 @@ setup(
     author_email='jeremy@ginger.io',
     packages=['chartio'],
     scripts=[],
-    url='https://github.com/ginger-io/chartio',
+    url='https://github.com/HeadspaceMeditation/chartio',
     license='LICENSE',
     description='Chart.io Utilities',
     long_description=open('README.md').read(),
